@@ -8,8 +8,8 @@ from .managers import CustomUserManager
 
 
 class CustomUser(AbstractBaseUser):
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
+    first_name = models.CharField(max_length=40, blank=False)
+    last_name = models.CharField(max_length=40, blank=False)
     email = models.EmailField(unique=True)
     phone_number = PhoneNumberField(blank=True, null=True)
     #department field needed
@@ -18,6 +18,10 @@ class CustomUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager() # 'objects' is used to define a manager for a model. These creates an instance of custom user manager class to perform queries.
-
+  
     USERNAME_FIELD = 'email'
+    ## REQUIRED_FIELDS is only related to superuser creation. Django will prompt for these fields in addition to the USERNAME_FIELD
     REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    def __str__(self):
+        return self.email
