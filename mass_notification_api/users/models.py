@@ -7,7 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from .managers import CustomUserManager
 
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=40, blank=False)
     last_name = models.CharField(max_length=40, blank=False)
     email = models.EmailField(unique=True)
@@ -16,6 +16,7 @@ class CustomUser(AbstractBaseUser):
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    #is_superuser = models.BooleanField(default=False)
 
     objects = CustomUserManager() # 'objects' is used to define a manager for a model. These creates an instance of custom user manager class to perform queries.
   
