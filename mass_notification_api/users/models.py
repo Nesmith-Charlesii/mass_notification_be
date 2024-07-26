@@ -10,7 +10,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # PermissionsMixin automatically includes 'is_superuser' to the CustomUser model. 'is_superuser = models.BooleanField(default=False)' is not neccessary.
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-    title = models.CharField(max_length=50, default="Unassigned")
+    role = models.CharField(max_length=50, default="Unassigned")
     email = models.EmailField(unique=True)
     phone_number = PhoneNumberField(blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -25,4 +25,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __repr__(self):
-        return f'{self.first_name} {self.last_name}\n{self.title}\n{self.email}\n{self.phone_number}\nDate joined: {self.date_joined}\n{self.is_active}'
+        return f'{self.first_name} {self.last_name}\n{self.role}\n{self.email}\n{self.phone_number}\nDate joined: {self.date_joined}\n{self.is_active}'
