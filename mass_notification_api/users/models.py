@@ -7,6 +7,7 @@ from .managers import CustomUserManager
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    # PermissionsMixin automatically includes 'is_superuser' to the CustomUser model. 'is_superuser = models.BooleanField(default=False)' is not neccessary.
     first_name = models.CharField(max_length=40, blank=False)
     last_name = models.CharField(max_length=40, blank=False)
     email = models.EmailField(unique=True)
@@ -15,10 +16,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    # PermissionsMixin automatically includes 'is_superuser' to the CustomUser model. 'is_superuser = models.BooleanField(default=False)' is not neccessary.
 
-    objects = CustomUserManager() # 'objects' is used to define a manager for a model. These creates an instance of custom user manager class to perform queries.
-  
+    # 'objects' is used to define a manager for a model. These creates an instance of custom user manager class to perform queries.
+    objects = CustomUserManager()
+    
     USERNAME_FIELD = 'email'
     ## REQUIRED_FIELDS is only related to superuser creation. Django will prompt for these fields in addition to the USERNAME_FIELD
     REQUIRED_FIELDS = ['first_name', 'last_name']
