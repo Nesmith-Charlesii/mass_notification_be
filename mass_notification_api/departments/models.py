@@ -9,3 +9,6 @@ class Department(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     users = models.ManyToManyField(CustomUser, related_name="departments", on_delete=models.CASCADE)
+
+    def __repr__(self):
+        return f'{self.name}\nDepartment head: {self.head_of_department}\n{self.phone_number}\nLast modified: {self.last_modified}'
