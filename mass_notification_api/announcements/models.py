@@ -4,7 +4,7 @@ from users.models import CustomUser
 class Announcement(models.Model):
     title = models.CharField(max_length=100)
     message = models.TextField()
-    author = models.ForeignKey(CustomUser, related_name='announcements')
+    author = models.ForeignKey(CustomUser, related_name='announcements', on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
