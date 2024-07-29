@@ -8,4 +8,3 @@ from rest_framework import status
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    
