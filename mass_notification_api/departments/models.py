@@ -3,7 +3,7 @@ from users.models import CustomUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 class Department(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    department_name = models.CharField(max_length=100, unique=True)
     head_of_department = models.ForeignKey(CustomUser, related_name="is_department_head", on_delete=models.CASCADE)
     phone_number = PhoneNumberField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
