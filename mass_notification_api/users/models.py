@@ -15,6 +15,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_modified = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    # Password field is not necessary because AbstractBaseUser already expects this field, which is why it is used in the CustomUserManager
 
     # 'objects' is used to define a manager for a model. These creates an instance of custom user manager class to perform queries.
     objects = CustomUserManager()

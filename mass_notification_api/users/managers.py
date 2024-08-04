@@ -14,6 +14,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("The Email must be set"))
         if not password: 
             raise ValueError(_("The Password must be set"))
+        
         email = self.normalize_email(email)
 
         """
