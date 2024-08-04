@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
-from phonenumber_field.modelfields import PhoneNumberField
-
 from .managers import CustomUserManager
 
 
@@ -12,7 +10,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=40)
     title = models.CharField(max_length=30, blank=True, default="Unassigned")
     email = models.EmailField(unique=True)
-    phone_number = PhoneNumberField(blank=True, null=True)
+    phone_number = models.CharField(max_length=10, blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
