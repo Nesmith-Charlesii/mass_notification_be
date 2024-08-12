@@ -1,4 +1,4 @@
 # gitignore
 
 mass_notification_api/mass_notification_api/settings.py
-mass_notification_api/.gitignore
+mass_notification_api/.env
