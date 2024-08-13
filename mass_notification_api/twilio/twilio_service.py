@@ -6,7 +6,7 @@ def send_sms(phone_number, message_body):
 
   message = client.messages.create(
     from_= settings.TWILIO_NUMBER,
-    to= "",
+    to= phone_number,
     body= message_body
   )
 
