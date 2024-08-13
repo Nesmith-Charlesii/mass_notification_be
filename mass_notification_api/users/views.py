@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 
-from ..twilio import twilio_service
+import twilio
 
 class UserViewSet(viewsets.ModelViewSet): 
     '''
@@ -17,12 +17,17 @@ class UserViewSet(viewsets.ModelViewSet):
     '''This tells the viewset which serializer to use when converting CustomUser instances to JSON (or other formats) and vice versa'''
     serializer_class = CustomUserSerializer
 
-    @action(detail=False, methods=['post'], url_path='nofify_user')
+    '''
+    By using 'detail=True', DRF knows to include an ID in the URL when using viewsets.
+    It tells DRF to operate on a single instance
+    '''
+    @action(detail=True, methods=['post'], url_path='notify_user')
     def notify_user(self, request, pk=None):
+        # Automatically retrieves object ID passed in URL and passes it to this method
         user = self.get_object()
         phone_number = user.phone_number
         message_body = f'Yo what\'s good {user.first_name}!'
 
-        twilio_service.send_sms(phone_number, message_body)
+        twilio.twilio_service.send_sms(phone_number, message_body)
 
-        return Response({'status': 'SMS sent'}, status=status.HTTP)
+        return Response({'status': 'SMS sent'}, status=status.HTTP_200_OK)

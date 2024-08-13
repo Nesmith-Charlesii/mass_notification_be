@@ -5,8 +5,8 @@ def send_sms(phone_number, message_body):
   client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
 
   message = client.messages.create(
-    from_= '+18335320199',
-    to= phone_number,
+    from_= settings.TWILIO_NUMBER,
+    to= "",
     body= message_body
   )
 
