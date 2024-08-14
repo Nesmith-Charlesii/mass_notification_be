@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 
-from twilio.twilio_service import send_sms
+from twilio_.twilio_service import send_sms
 
 class UserViewSet(viewsets.ModelViewSet): 
     '''
